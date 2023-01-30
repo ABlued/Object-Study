@@ -12,7 +12,7 @@ public abstract class DiscountPolicy {
     }
 
     // DiscountPolicy는 할인 여부와 요금 계산에 필요한 전체적인 흐름은 정의하지만 실제로
-    // 요금을 계산하는 부분은 추상 메서등니 getDiscountAmount 메서드에게 위임한다.
+    // 요금을 계산하는 부분은 추상 메서드이니 getDiscountAmount 메서드에게 위임한다.
     public Money calculateDiscountAmount(Screening screening){
         for(DisCountCondition each: conditions){
             if(each.isSatisfiedBy(screening)){
