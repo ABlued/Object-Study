@@ -19,6 +19,10 @@ public abstract class DiscountPolicy {
                 return getDiscountAmount(screening);
             }
         }
+        // 여기서 문제가 있다. 이미 할인 조건이 없으면 할인 요금이 0원이라는 것을 반환하기 때문이다.
+        // 할인 요금이 없는 할인 정책의 필요가 없어졌다.
+        // 이 문제의 해결방법은 DiscountPolicy를 인터페이스로 바꾸고 NoneDiscountPolicy가 DiscountPolicy의 getDiscountAmount() 메서드가 아닌
+        // calculateDiscountAmount 오퍼레이션을 오버라이딩하도록 변경하는 것이다.
         return Money.ZERO;
     }
 
