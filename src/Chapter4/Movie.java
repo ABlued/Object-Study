@@ -2,6 +2,7 @@ package Chapter4;
 
 
 import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
 // 데이터 중심의 설계
@@ -81,6 +82,19 @@ public class Movie {
         return fee;
     }
 
-    
+    public boolean isDiscountable(LocalDateTime whenScreened, int sequence){
+        for(DiscountCondition condition:discountConditions){
+            if(condition.getType() == DiscountConditionType.PERIOD){
+                if(condition.isDiscountable(whenScreened.getDayOfWeek(), whenScreened.toLocalTime())){
+                    return true;
+                }
+            } else {
+                if(condition.isDiscountable((sequence))){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
 }
